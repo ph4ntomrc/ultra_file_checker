@@ -15,7 +15,6 @@ def upload_file():
     if request.method == 'POST':
         file = request.files.get('file')
         if file:
-            filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             res = os.popen(f"file uploads/{filename}").read()
             return render_template('index.html', output=res)
