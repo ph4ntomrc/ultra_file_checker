@@ -15,8 +15,8 @@ def upload_file():
     if request.method == 'POST':
         file = request.files.get('file')
         if file:
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            res = os.popen(f"file uploads/{filename}").read()
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+            res = os.popen(f"file uploads/{file.filename}").read()
             return render_template('index.html', output=res)
         else:
             return render_template_string("Прикол")
